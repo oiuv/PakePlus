@@ -2,11 +2,15 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::{Menu, MenuItem, Submenu};
+
 // 对command单独管理
 mod command;
 
 fn main() {
-    let edit_menu = Submenu::new(
+    #[cfg(any(target_os = "linux", target_os = "windows"))]
+    let menu = Menu::new();
+    #[cfg(target_os = "macos")]
+    let menu = Menu::new().add_submenu(Submenu::new(
         "Edit",
         Menu::new()
             .add_native_item(MenuItem::Undo)
@@ -17,9 +21,9 @@ fn main() {
             .add_native_item(MenuItem::SelectAll)
             .add_native_item(MenuItem::CloseWindow)
             .add_native_item(MenuItem::Quit),
-    );
+    ));
     tauri::Builder::default()
-        .menu(Menu::new().add_submenu(edit_menu))
+        .menu(menu)
         .invoke_handler(tauri::generate_handler![
             command::pakeplus::open_window,
             command::pakeplus::preview_from_config,

@@ -654,6 +654,8 @@ const rotateWH = () => {
     const temp = appForm.width
     appForm.width = appForm.height
     appForm.height = temp
+    tauriConfig.windows.width = appForm.width
+    tauriConfig.windows.height = appForm.height
     preview(true)
 }
 
@@ -1308,7 +1310,7 @@ const getLatestRelease = async () => {
         store.currentProject.name
     )
     console.log('releaseRes', releaseRes)
-    if (releaseRes.status === 200 && releaseRes.data.assets.length > 3) {
+    if (releaseRes.status === 200 && releaseRes.data.assets.length >= 3) {
         // filter current project version
         const assets = releaseRes.data.assets.filter((item: any) => {
             return (

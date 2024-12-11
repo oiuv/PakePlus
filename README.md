@@ -132,17 +132,23 @@ pnpm run dev
 
 # Package the app
 pnpm run build
+
+# github action
+releaseDraft: false：表示这个版本不会是草稿版本，它会被视为正式发布的版本。
+prerelease: false：表示这个版本不是预发布版本，也就是说这是一个稳定版本。
+publish: false：表示这个版本不会立即发布，虽然它会被创建，但不会公开显示。
 ```
 
-## Support
+<!-- ## Support
 
 1. If PakePlus has brought joy to your life, feel free to support it.
  <p align="center">
          <img src="./docs/pay.png" />
- </p>
+ </p> -->
 
 ## TODO
 
-1. add tauri window config to view
-2. add view control button to page
-3. edit js content injection to preview page with tauri window
+1. add auto update feature
+2. support build android apk and build ios ipa
+3. add upload front build dist to build
+4.
